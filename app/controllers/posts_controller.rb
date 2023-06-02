@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     for post in @posts
       user = User.find_by({ "id" => post["user_id"] })
       posts_json << {
+        "id" => post["id"],
         "username" => user["username"],
         "real_name" => user["real_name"],
         "body" => post["body"],
