@@ -5,12 +5,14 @@ class PostsController < ApplicationController
     posts_json = []
     for post in @posts
       user = User.find_by({ "id" => post["user_id"] })
-      posts_json << {
-        "username" => user["username"],
-        "real_name" => user["real_name"],
-        "body" => post["body"],
-        "created_at" => post["created_at"]
-      }
+      if user
+        posts_json << {
+          "username" => user["username"],
+          "real_name" => user["real_name"],
+          "body" => post["body"],
+          "created_at" => post["created_at"]
+        }
+      end
     end
 
     respond_to do |format|
